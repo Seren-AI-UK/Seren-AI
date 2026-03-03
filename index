@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seren AI — Intelligent Systems for the Helping Professions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #ffffff; --off-white: #f7fafd; --blue-lightest: #e8f4fb;
+      --blue-light: #cce8f5; --blue-mid: #7bbfd6; --blue: #3a9bbf;
+      --blue-deep: #1a6f8a; --blue-navy: #0d3d52; --text-dark: #12293a;
+      --text-mid: #3a5568; --text-light: #6a8a9a;
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--blue-light); }
+    .nav-logo { font-family: var(--serif); font-size: 1.35rem; color: var(--blue-deep); text-decoration: none; }
+    .nav-logo span { color: var(--blue-mid); }
+    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta { background: var(--blue-deep) !important; color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 4px; }
+    .nav-cta:hover { background: var(--blue-navy) !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 7rem 5% 4rem; gap: 4rem; background: linear-gradient(160deg, var(--white) 55%, var(--blue-lightest) 100%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, var(--blue-light) 0%, transparent 70%); opacity: 0.5; pointer-events: none; }
+    .hero-eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); background: var(--blue-lightest); border: 1px solid var(--blue-light); padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.18; color: var(--blue-navy); margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--blue-deep); }
+    .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 480px; margin-bottom: 2.4rem; font-weight: 300; line-height: 1.75; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--blue-deep); color: var(--white); padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--blue-navy); transform: translateY(-1px); }
+    .btn-secondary { display: inline-block; background: transparent; color: var(--blue-deep); padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; font-size: 0.92rem; font-weight: 500; border: 1.5px solid var(--blue-mid); transition: all 0.2s; }
+    .btn-secondary:hover { background: var(--blue-lightest); border-color: var(--blue-deep); }
+    .hero-visual { display: flex; flex-direction: column; gap: 0.9rem; }
+    .mini-card { background: var(--white); border: 1px solid var(--blue-light); border-radius: 10px; padding: 1.1rem 1.4rem; box-shadow: 0 2px 16px rgba(58,155,191,0.08); display: flex; align-items: flex-start; gap: 1rem; animation: floatUp 0.6s ease both; }
+    .mini-card:nth-child(1) { animation-delay: 0.1s; }
+    .mini-card:nth-child(2) { animation-delay: 0.25s; }
+    .mini-card:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes floatUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .mini-card-icon { width: 38px; height: 38px; border-radius: 8px; background: var(--blue-lightest); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .mini-card-text strong { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .mini-card-text span { font-size: 0.78rem; color: var(--text-light); }
+    .mini-card-badge { margin-left: auto; font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 20px; background: #e8f7f0; color: #1a7a4a; white-space: nowrap; align-self: center; }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--blue-lightest); border-top: 1px solid var(--blue-light); border-bottom: 1px solid var(--blue-light); padding: 1.3rem 5%; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .trust-item { font-size: 0.8rem; font-weight: 500; color: var(--text-mid); display: flex; align-items: center; gap: 0.5rem; }
+
+    /* SHARED SECTION STYLES */
+    section { padding: 5.5rem 5%; }
+    .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--blue-navy); line-height: 1.25; margin-bottom: 1rem; }
+    .section-sub { font-size: 1rem; color: var(--text-mid); font-weight: 300; line-height: 1.75; max-width: 560px; }
+
+    /* PILOT OFFER */
+    .pilot { background: var(--blue-navy); padding: 5rem 5%; }
+    .pilot-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .pilot-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 0.8rem; }
+    .pilot h2 { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.4rem); color: var(--white); line-height: 1.25; margin-bottom: 1rem; }
+    .pilot p { color: rgba(255,255,255,0.7); font-size: 0.98rem; font-weight: 300; line-height: 1.75; }
+    .pilot-steps { display: flex; flex-direction: column; gap: 1.2rem; }
+    .pilot-step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.3rem 1.5rem; display: flex; gap: 1.1rem; align-items: flex-start; }
+    .pilot-step-num { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--blue-mid); line-height: 1; flex-shrink: 0; width: 28px; }
+    .pilot-step-text strong { display: block; font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.3rem; }
+    .pilot-step-text span { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    /* INSIGHT */
+    .insight { background: var(--off-white); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .insight-quote { border-left: 3px solid var(--blue-mid); padding-left: 1.8rem; margin-bottom: 2rem; }
+    .insight-quote blockquote { font-family: var(--serif); font-size: 1.25rem; font-style: italic; color: var(--blue-navy); line-height: 1.6; margin-bottom: 0.8rem; }
+    .insight-quote cite { font-size: 0.8rem; color: var(--text-light); font-style: normal; }
+    .insight-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .stat-box { background: var(--white); border: 1px solid var(--blue-light); border-radius: 10px; padding: 1.4rem; }
+    .stat-num { font-family: var(--serif); font-size: 2.1rem; font-weight: 700; color: var(--blue-deep); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.4; }
+
+    /* SERVICES */
+    .services { background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .service-card { border: 1px solid var(--blue-light); border-radius: 12px; padding: 2rem; transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s; }
+    .service-card:hover { box-shadow: 0 8px 30px rgba(58,155,191,0.12); transform: translateY(-3px); border-color: var(--blue-mid); }
+    .service-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--blue-lightest); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
+    .service-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--blue-navy); margin-bottom: 0.6rem; }
+    .service-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .how { background: var(--blue-lightest); }
+    .how-inner { max-width: 900px; margin: 3rem auto 0; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 27px; left: 10%; right: 10%; height: 1px; background: var(--blue-light); z-index: 0; }
+    .step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--white); border: 2px solid var(--blue-mid); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--blue-deep); margin: 0 auto 1.2rem; }
+    .step h4 { font-family: var(--serif); font-size: 0.95rem; color: var(--blue-navy); margin-bottom: 0.5rem; }
+    .step p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.55; }
+
+    /* BOTTOM CTA */
+    .cta-section { background: var(--white); border-top: 1px solid var(--blue-light); padding: 5rem 5%; text-align: center; }
+    .cta-section h2 { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.4rem); color: var(--blue-navy); margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-mid); font-size: 1rem; font-weight: 300; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: var(--blue-navy); padding: 2.5rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--blue-mid); }
+    .footer-links { display: flex; gap: 1.8rem; }
+    .footer-links a { text-decoration: none; font-size: 0.8rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero, .insight, .pilot-inner { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-top: 8rem; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .trust-bar { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Seren<span>.</span>AI</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html#book" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI for Doctors &amp; Lawyers</div>
+    <h1>Spend More Time<br/>on <em>Your Clients.</em><br/>Not Your Admin.</h1>
+    <p class="hero-sub">We build bespoke AI systems that handle the routine so your practice can focus on the work that genuinely matters — the human work only you can do.</p>
+    <div class="hero-actions">
+      <a href="contact.html#book" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="#services" class="btn-secondary">See What We Do</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="mini-card">
+      <div class="mini-card-icon">📋</div>
+      <div class="mini-card-text"><strong>Appointment notes drafted</strong><span>Automatically from your session transcripts</span></div>
+      <div class="mini-card-badge">✓ Done</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">⚖️</div>
+      <div class="mini-card-text"><strong>Contract clauses reviewed</strong><span>Flagged and summarised in plain English</span></div>
+      <div class="mini-card-badge">✓ Done</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">📧</div>
+      <div class="mini-card-text"><strong>Client follow-up emails ready</strong><span>Personalised, ready to send in one click</span></div>
+      <div class="mini-card-badge">✓ Done</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✓ GDPR &amp; Data-Compliant</div>
+  <div class="trust-item">✓ Built Around Your Workflows</div>
+  <div class="trust-item">✓ Risk-Free Pilot Programme</div>
+  <div class="trust-item">✓ 3-Month Rolling Agreement</div>
+</div>
+
+<!-- PILOT OFFER -->
+<section class="pilot" id="pilot">
+  <div class="pilot-inner">
+    <div>
+      <div class="pilot-label">How We Work</div>
+      <h2>We build it first.<br/>You decide after.</h2>
+      <p style="margin-top:1rem">We know you're busy, and we know trust is earned — not assumed. So we start with a risk-free pilot: we build a working prototype for your practice at no cost. If it works for you, we move forward together. If it doesn't, all we ask is an honest conversation about why.</p>
+    </div>
+    <div class="pilot-steps">
+      <div class="pilot-step">
+        <div class="pilot-step-num">1</div>
+        <div class="pilot-step-text"><strong>Free Discovery Call</strong><span>We learn your workflow, identify the biggest time drains, and scope a prototype together.</span></div>
+      </div>
+      <div class="pilot-step">
+        <div class="pilot-step-num">2</div>
+        <div class="pilot-step-text"><strong>We Build a Prototype — Free</strong><span>A working AI system tailored to your practice. No cost, no commitment.</span></div>
+      </div>
+      <div class="pilot-step">
+        <div class="pilot-step-num">3</div>
+        <div class="pilot-step-text"><strong>You Decide</strong><span>If you want to continue, we agree a 3-month rolling service. If not, we part as friends — and ask only for a referral if you felt it was worthwhile.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT -->
+<section class="insight" id="insight">
+  <div>
+    <div class="section-label">The Challenge</div>
+    <h2 class="section-title">Your expertise is the product.<br/>Admin should not be.</h2>
+    <p class="section-sub">Professionals in law and medicine spend an extraordinary share of their day on tasks that require almost no specialist knowledge — scheduling, note-taking, drafting routine correspondence, reviewing standard documents. AI can handle these. We make sure it does.</p>
+  </div>
+  <div>
+    <div class="insight-stats">
+      <div class="stat-box"><div class="stat-num">60%</div><div class="stat-desc">of a professional's day involves tasks that AI can now automate or accelerate</div></div>
+      <div class="stat-box"><div class="stat-num">3 wks</div><div class="stat-desc">average time from discovery call to a working prototype in your hands</div></div>
+      <div class="stat-box"><div class="stat-num">£0</div><div class="stat-desc">cost to see a working prototype — you only pay if you choose to continue</div></div>
+      <div class="stat-box"><div class="stat-num">100%</div><div class="stat-desc">human-in-the-loop — every AI output goes through you before it's used</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div style="max-width:540px">
+    <div class="section-label">What We Build</div>
+    <h2 class="section-title">AI systems designed for your practice</h2>
+    <p class="section-sub">Each system is built around your existing tools, your terminology, and your professional obligations — not a generic template.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🗒️</div><h3>Clinical &amp; Consultation Notes</h3><p>First-draft notes, referral letters, and discharge summaries generated from session transcripts — ready for your review and sign-off.</p></div>
+    <div class="service-card"><div class="service-icon">📑</div><h3>Document Review &amp; Drafting</h3><p>AI-assisted review of contracts, leases, and standard forms. Key clauses flagged, anomalies highlighted, first responses drafted.</p></div>
+    <div class="service-card"><div class="service-icon">🤖</div><h3>Intelligent Client Intake</h3><p>Adaptive intake forms that pre-populate case files and summarise client history — before the first appointment begins.</p></div>
+    <div class="service-card"><div class="service-icon">📬</div><h3>Communications &amp; Follow-up</h3><p>Personalised follow-up emails, reminders, and patient-facing summaries drafted automatically, in your voice.</p></div>
+    <div class="service-card"><div class="service-icon">🔍</div><h3>Research &amp; Precedent Search</h3><p>Rapid summarisation of case law, clinical guidelines, and literature. Surface what's relevant in seconds, not hours.</p></div>
+    <div class="service-card"><div class="service-icon">🛠️</div><h3>Bespoke Workflow Automation</h3><p>Your practice has its own bottlenecks. We map them, scope a solution, and build it — from scratch, around you.</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div style="text-align:center; max-width:600px; margin:0 auto">
+    <div class="section-label">Our Process</div>
+    <h2 class="section-title">Simple, transparent, low-risk</h2>
+    <p class="section-sub" style="margin:0 auto">From first conversation to a working system — in weeks, not months.</p>
+  </div>
+  <div class="how-inner">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h4>Discovery Call</h4><p>Free, 45 minutes. We listen more than we talk.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Prototype Build</h4><p>We build a working system tailored to your practice. At no cost to you.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>You Evaluate</h4><p>Use it. Test it. Tell us what works and what doesn't.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Go Forward Together</h4><p>If you're happy, we agree a 3-month rolling service. Simple as that.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <h2>Ready to see what AI could do for your practice?</h2>
+  <p>Book a free discovery call, or send us a message. No obligation — just an honest conversation.</p>
+  <div class="cta-actions">
+    <a href="contact.html#book" class="btn-primary">Book a Discovery Call</a>
+    <a href="contact.html" class="btn-secondary">Send a Message</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Seren<span>.</span>AI</a>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Seren AI Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

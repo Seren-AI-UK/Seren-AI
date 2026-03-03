@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Seren AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #ffffff; --off-white: #f7fafd; --blue-lightest: #e8f4fb;
+      --blue-light: #cce8f5; --blue-mid: #7bbfd6; --blue: #3a9bbf;
+      --blue-deep: #1a6f8a; --blue-navy: #0d3d52; --text-dark: #12293a;
+      --text-mid: #3a5568; --text-light: #6a8a9a;
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--blue-light); }
+    .nav-logo { font-family: var(--serif); font-size: 1.35rem; color: var(--blue-deep); text-decoration: none; }
+    .nav-logo span { color: var(--blue-mid); }
+    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta { background: var(--blue-deep) !important; color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 4px; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 9rem 5% 4rem; background: linear-gradient(160deg, var(--white) 60%, var(--blue-lightest) 100%); border-bottom: 1px solid var(--blue-light); }
+    .page-header .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--blue-navy); line-height: 1.2; margin-bottom: 1rem; }
+    .page-header p { font-size: 1rem; color: var(--text-mid); font-weight: 300; max-width: 500px; line-height: 1.75; }
+
+    /* DIVIDER */
+    .section-divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 5%; margin: 0; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--blue-light); }
+    .section-divider-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
+
+    /* CONTACT FORM SECTION */
+    .contact-section { padding: 5rem 5%; background: var(--white); }
+    .contact-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    .contact-info h2 { font-family: var(--serif); font-size: 1.6rem; color: var(--blue-navy); margin-bottom: 1rem; line-height: 1.3; }
+    .contact-info p { font-size: 0.95rem; color: var(--text-mid); font-weight: 300; line-height: 1.75; margin-bottom: 2rem; }
+    .contact-detail { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.9rem; font-size: 0.88rem; color: var(--text-mid); }
+    .contact-detail a { color: var(--blue-deep); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.45rem; letter-spacing: 0.02em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--blue-light);
+      border-radius: 6px; font-family: var(--sans); font-size: 0.92rem;
+      color: var(--text-dark); background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(58,155,191,0.1); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit { background: var(--blue-deep); color: var(--white); padding: 0.9rem 2.2rem; border-radius: 4px; border: none; font-family: var(--sans); font-size: 0.92rem; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; width: 100%; }
+    .btn-submit:hover { background: var(--blue-navy); transform: translateY(-1px); }
+    .form-note { font-size: 0.78rem; color: var(--text-light); margin-top: 0.8rem; text-align: center; line-height: 1.5; }
+
+    /* BOOK A CALL SECTION */
+    .book-section { padding: 5rem 5%; background: var(--blue-navy); }
+    .book-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+    .book-info .book-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 0.8rem; }
+    .book-info h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--white); line-height: 1.3; margin-bottom: 1rem; }
+    .book-info p { font-size: 0.95rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.75; margin-bottom: 1.5rem; }
+    .book-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .book-bullets li { font-size: 0.88rem; color: rgba(255,255,255,0.7); display: flex; align-items: flex-start; gap: 0.7rem; }
+    .book-bullets li::before { content: '✓'; color: var(--blue-mid); font-weight: 700; flex-shrink: 0; }
+    .book-widget { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 2.5rem; text-align: center; }
+    .book-widget p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 1.8rem; font-weight: 300; line-height: 1.65; }
+    .btn-calendly { display: inline-block; background: var(--blue); color: var(--white); padding: 1rem 2.4rem; border-radius: 4px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+    .btn-calendly:hover { background: var(--blue-deep); transform: translateY(-1px); }
+    .book-note { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 1rem; }
+
+    /* FOOTER */
+    footer { background: var(--off-white); border-top: 1px solid var(--blue-light); padding: 2.5rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--blue-deep); text-decoration: none; }
+    .footer-logo span { color: var(--blue-mid); }
+    .footer-links { display: flex; gap: 1.8rem; }
+    .footer-links a { text-decoration: none; font-size: 0.8rem; color: var(--text-light); }
+    .footer-copy { font-size: 0.78rem; color: var(--text-light); }
+
+    /* SUCCESS MESSAGE */
+    .form-success { display: none; background: #e8f7f0; border: 1px solid #a3d9be; border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .form-success h3 { font-family: var(--serif); color: #1a5c38; font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .form-success p { font-size: 0.88rem; color: #2a7a4e; }
+
+    @media (max-width: 900px) {
+      .contact-inner, .book-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Seren<span>.</span>AI</a>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="contact.html">Contact</a>
+    <a href="#book" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-label">Get in Touch</div>
+  <h1>Let's talk about<br/>your practice.</h1>
+  <p>No pitch, no pressure. We start by listening — to your workflows, your frustrations, and where you'd most like time back.</p>
+</div>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Send us a message</h2>
+      <p>Use this form for any questions, or to tell us a little about your practice before we speak. We'll get back to you within one working day.</p>
+      <div class="contact-detail">
+        <span>✉</span>
+        <a href="mailto:hello@serenai.co.uk">hello@serenai.co.uk</a>
+      </div>
+      <div class="contact-detail">
+        <span>📍</span>
+        <span>United Kingdom</span>
+      </div>
+    </div>
+    <div>
+      <div class="form-success" id="formSuccess">
+        <h3>Message received — thank you.</h3>
+        <p>We'll be in touch within one working day.</p>
+      </div>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="jane@smithandco.co.uk" required />
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <select id="profession" name="profession" required>
+            <option value="" disabled selected>Select your field</option>
+            <option>GP / General Practice</option>
+            <option>Hospital Medicine</option>
+            <option>Private Medical Practice</option>
+            <option>Solicitor / Law Firm</option>
+            <option>Barrister</option>
+            <option>Other Legal Professional</option>
+            <option>Other Helping Profession</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">What would you like to talk about?</label>
+          <textarea id="message" name="message" placeholder="Tell us a little about your practice and where you feel AI might help most..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message →</button>
+        <p class="form-note">We respect your privacy. Your details are never shared and used only to respond to your enquiry.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL DIVIDER -->
+<div class="section-divider">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-label">Or, skip straight to a call</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<!-- BOOK A CALL -->
+<section class="book-section" id="book">
+  <div class="book-inner">
+    <div class="book-info">
+      <div class="book-label">Discovery Call</div>
+      <h2>Free. 45 minutes.<br/>No obligation.</h2>
+      <p>Book a time directly in our calendar. We'll come prepared — and we'll spend most of it listening to you.</p>
+      <ul class="book-bullets">
+        <li>Walk us through your current workflow</li>
+        <li>We'll identify where AI can save you the most time</li>
+        <li>We'll explain exactly what a prototype would look like</li>
+        <li>No charge. No commitment. No follow-up pressure.</li>
+      </ul>
+    </div>
+    <div class="book-widget">
+      <p>Click below to open our booking calendar and choose a time that suits you. Calls are available mornings and afternoons, Monday to Friday.</p>
+      <!-- Replace the href below with your real Calendly link -->
+      <a href="https://calendly.com/tatiana-vilsbol/30min" target="_blank" class="btn-calendly">Choose a Time →</a>
+      <p class="book-note">You'll receive a confirmation email and a calendar invite immediately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Seren<span>.</span>AI</a>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Seren AI Ltd. All rights reserved.</div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('contact').offsetTop - 100, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
